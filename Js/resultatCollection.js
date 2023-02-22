@@ -1,5 +1,6 @@
 class resultatCollection {
-    constructor() {
+    constructor(sujet) {
+        this.sujet = sujet;
         this.resultat = [];
     }
 
