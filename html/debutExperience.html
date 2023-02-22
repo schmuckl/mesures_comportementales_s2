@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil strool</title>
+    <link rel="stylesheet" href="../style.css"/>
+</head>
+<body onload="checkDevice()">
+
+<div id="warning-device">
+    Cette experience doit être réalisée sur ordinateur. Des bisous.
+</div>
+<div id="questionnaire-entree">
+    <h1>
+        Bonjour et bienvenue dans cette étude comportementale !
+    </h1>
+    <h3>Description du fonctionnement de cette étude</h3>
+    <p class="warning">Pour une experience optimale, veuillez utiliser un ordinateur. </p>
+    <p>
+        Pour cette experience, vous allez avoir une interface avec 4 boutons "Couleurs" et un bouton "commencer"/"suivant".
+        Lorsque vous commencez l'experience, un mot en couleur apparaitra.
+        L'objectif est de <b>cliquer sur la couleur</b> du mot le plus rapidement possible.
+        <br>
+    <h4>Merci d'avance et bonne chance !</h4>
+    </p>
+    <h3>Veuillez remplir les champs ci-dessous</h3>
+    <form action="strook.html" method="GET">
+        <label>Entrez votre âge :</label>
+        <input type="number" id="age" name="age" min="1" max="100"><br><br>
+        <label>Sélectionner votre genre :</label>
+        <input type="radio" id="homme" name="genre" value="homme" checked>
+        <label for="homme">Homme</label>
+        <input type="radio" id="femme" name="genre" value="femme">
+        <label for="femme">Femme</label><br><br>
+
+        <label>Êtes vous daltonien :</label>
+        <input type="radio" id="no" name="daltonien" value="no" checked>
+        <label for="no">Non</label>
+        <input type="radio" id="yes" name="daltonien" value="yes">
+        <label for="yes">Oui</label><br><br>
+
+        <p>Veuillez cocher cette case si vous êtes d'accord avec le fait de participer à cette expérience :
+            <input type="checkbox" name="validationExp" id="validationExp" required> </p>
+        <button type="submit" value="Submit">Valider</button>
+    </form></div>
+
+</body>
+<script src="../Js/accueil.js"></script>
+</html>
