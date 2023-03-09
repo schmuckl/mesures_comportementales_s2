@@ -19,7 +19,7 @@ const element_mot_a_changer =  document.getElementById("mot-a-changer");
 const boutons_couleurs = document.getElementsByClassName("bouton-couleur");
 const next_bouton = document.getElementById("bouton-next");
 
-const mots_couleurs_80_congruents = [
+const mots_couleurs_exemple = [
     {
         id: 1,
         mot: "bleu",
@@ -28,13 +28,13 @@ const mots_couleurs_80_congruents = [
     }, {
         id: 2,
         mot: "jaune",
-        couleur: JAUNE,
-        association: "forte"
+        couleur: BLEU,
+        association: "faible"
     }, {
         id: 3,
         mot: "vert",
-        couleur: VERT,
-        association: "forte"
+        couleur: ROUGE,
+        association: "faible"
     }, {
         id: 4,
         mot: "rouge",
@@ -42,131 +42,21 @@ const mots_couleurs_80_congruents = [
         association: "forte"
     }, {
         id: 5,
-        mot: "bleu",
-        couleur: BLEU,
+        mot: "vert",
+        couleur: VERT,
         association: "forte"
     }, {
         id: 6,
-        mot: "jaune",
-        couleur: JAUNE,
-        association: "forte"
+        mot: "rouge",
+        couleur: VERT,
+        association: "faible"
     }, {
         id: 7,
-        mot: "rouge",
-        couleur: ROUGE,
+        mot: "jaune",
+        couleur: JAUNE,
         association: "forte"
     }, {
         id: 8,
-        mot: "rouge",
-        couleur: VERT,
-        association: "faible"
-    }, {
-        id: 9,
-        mot: "vert",
-        couleur: VERT,
-        association: "forte"
-    }, {
-        id: 10,
-        mot: "jaune",
-        couleur: JAUNE,
-        association: "forte"
-    }, {
-        id: 11,
-        mot: "jaune",
-        couleur: BLEU,
-        association: "faible"
-    }, {
-        id: 12,
-        mot: "jaune",
-        couleur: JAUNE,
-        association: "forte"
-    }, {
-        id: 13,
-        mot: "rouge",
-        couleur: ROUGE,
-        association: "forte"
-    }, {
-        id: 14,
-        mot: "vert",
-        couleur: VERT,
-        association: "forte"
-    }, {
-        id: 15,
-        mot: "vert",
-        couleur: ROUGE,
-        association: "faible"
-    }, {
-        id: 16,
-        mot: "jaune",
-        couleur: JAUNE,
-        association: "forte"
-    }, {
-        id: 17,
-        mot: "bleu",
-        couleur: BLEU,
-        association: "forte"
-    }, {
-        id: 18,
-        mot: "jaune",
-        couleur: JAUNE,
-        association: "forte"
-    }, {
-        id: 19,
-        mot: "bleu",
-        couleur: BLEU,
-        association: "forte"
-    }, {
-        id: 20,
-        mot: "jaune",
-        couleur: JAUNE,
-        association: "forte"
-    },  {
-        id: 21,
-        mot: "rouge",
-        couleur: ROUGE,
-        association: "forte"
-    }, {
-        id: 22,
-        mot: "vert",
-        couleur: VERT,
-        association: "forte"
-    }, {
-        id: 23,
-        mot: "rouge",
-        couleur: ROUGE,
-        association: "forte"
-    }, {
-        id: 24,
-        mot: "rouge",
-        couleur: ROUGE,
-        association: "forte"
-    }, {
-        id: 25,
-        mot: "bleu",
-        couleur: BLEU,
-        association: "forte"
-    }, {
-        id: 26,
-        mot: "jaune",
-        couleur: BLEU,
-        association: "faible"
-    }, {
-        id: 27,
-        mot: "jaune",
-        couleur: JAUNE,
-        association: "forte"
-    }, {
-        id: 28,
-        mot: "bleu",
-        couleur: JAUNE,
-        association: "faible"
-    }, {
-        id: 29,
-        mot: "vert",
-        couleur: ROUGE,
-        association: "faible"
-    }, {
-        id: 30,
         mot: "bleu",
         couleur: BLEU,
         association: "forte"
@@ -174,91 +64,93 @@ const mots_couleurs_80_congruents = [
 ];
 
 
-const mots_couleurs_20_congruents = [
+// La paire rouge-vert a 20% de congruent
+// La paire bleu-jaune a 80% de congruent
+const mots_couleurs_bloc_1 = [
     {
         id: 1,
-        mot: "jaune",
-        couleur: BLEU,
-        association: "faible"
+        mot: "rouge",
+        couleur: ROUGE,
+        association: "forte"
     }, {
         id: 2,
-        mot: "bleu",
-        couleur: JAUNE,
-        association: "faible"
+        mot: "rouge",
+        couleur: ROUGE,
+        association: "forte"
     }, {
         id: 3,
-        mot: "vert",
+        mot: "rouge",
         couleur: ROUGE,
-        association: "faible"
+        association: "forte"
     }, {
         id: 4,
-        mot: "vert",
+        mot: "rouge",
         couleur: ROUGE,
-        association: "faible"
+        association: "forte"
     }, {
         id: 5,
-        mot: "jaune",
-        couleur: BLEU,
+        mot: "rouge",
+        couleur: VERT,
         association: "faible"
     }, {
         id: 6,
-        mot: "jaune",
-        couleur: BLEU,
-        association: "faible"
+        mot: "vert",
+        couleur: VERT,
+        association: "forte"
     }, {
         id: 7,
-        mot: "rouge",
-        couleur: ROUGE,
+        mot: "vert",
+        couleur: VERT,
         association: "forte"
     }, {
         id: 8,
-        mot: "rouge",
+        mot: "vert",
         couleur: VERT,
-        association: "faible"
+        association: "forte"
     }, {
         id: 9,
         mot: "vert",
-        couleur: ROUGE,
-        association: "faible"
-    }, {
-        id: 10,
-        mot: "jaune",
-        couleur: BLEU,
-        association: "faible"
-    }, {
-        id: 11,
-        mot: "rouge",
-        couleur: ROUGE,
+        couleur: VERT,
         association: "forte"
     }, {
-        id: 12,
-        mot: "jaune",
-        couleur: BLEU,
-        association: "faible"
-    }, {
-        id: 13,
-        mot: "rouge",
-        couleur: VERT,
-        association: "faible"
-    }, {
-        id: 14,
+        id: 10,
         mot: "vert",
         couleur: ROUGE,
         association: "faible"
     }, {
-        id: 15,
-        mot: "rouge",
-        couleur: ROUGE,
+        id: 11,
+        mot: "bleu",
+        couleur: BLEU,
         association: "forte"
+    }, {
+        id: 12,
+        mot: "bleu",
+        couleur: JAUNE,
+        association: "faible"
+    }, {
+        id: 13,
+        mot: "bleu",
+        couleur: JAUNE,
+        association: "faible"
+    }, {
+        id: 14,
+        mot: "bleu",
+        couleur: JAUNE,
+        association: "faible"
+    }, {
+        id: 15,
+        mot: "bleu",
+        couleur: JAUNE,
+        association: "faible"
     }, {
         id: 16,
         mot: "jaune",
-        couleur: BLEU,
-        association: "faible"
+        couleur: JAUNE,
+        association: "forte"
     }, {
         id: 17,
-        mot: "bleu",
-        couleur: JAUNE,
+        mot: "jaune",
+        couleur: BLEU,
         association: "faible"
     }, {
         id: 18,
@@ -267,63 +159,119 @@ const mots_couleurs_20_congruents = [
         association: "faible"
     }, {
         id: 19,
-        mot: "bleu",
-        couleur: JAUNE,
+        mot: "jaune",
+        couleur: BLEU,
         association: "faible"
     }, {
         id: 20,
         mot: "jaune",
         couleur: BLEU,
         association: "faible"
-    },  {
-        id: 21,
+    }
+];
+
+// La paire rouge-vert a 80% de congruent
+// La paire bleu-jaune a 20% de congruent
+const mots_couleurs_bloc_2 = [
+    {
+        id: 1,
+        mot: "rouge",
+        couleur: ROUGE,
+        association: "forte"
+    }, {
+        id: 2,
         mot: "rouge",
         couleur: VERT,
         association: "faible"
     }, {
-        id: 22,
+        id: 3,
+        mot: "rouge",
+        couleur: VERT,
+        association: "faible"
+    }, {
+        id: 4,
+        mot: "rouge",
+        couleur: VERT,
+        association: "faible"
+    }, {
+        id: 5,
+        mot: "rouge",
+        couleur: VERT,
+        association: "faible"
+    }, {
+        id: 6,
+        mot: "vert",
+        couleur: VERT,
+        association: "forte"
+    }, {
+        id: 7,
         mot: "vert",
         couleur: ROUGE,
         association: "faible"
     }, {
-        id: 23,
-        mot: "rouge",
-        couleur: VERT,
+        id: 8,
+        mot: "vert",
+        couleur: ROUGE,
         association: "faible"
     }, {
-        id: 24,
-        mot: "rouge",
-        couleur: VERT,
+        id: 9,
+        mot: "vert",
+        couleur: ROUGE,
         association: "faible"
     }, {
-        id: 25,
+        id: 10,
+        mot: "vert",
+        couleur: ROUGE,
+        association: "faible"
+    }, {
+        id: 11,
+        mot: "bleu",
+        couleur: BLEU,
+        association: "forte"
+    }, {
+        id: 12,
+        mot: "bleu",
+        couleur: BLEU,
+        association: "forte"
+    }, {
+        id: 13,
+        mot: "bleu",
+        couleur: BLEU,
+        association: "forte"
+    }, {
+        id: 14,
+        mot: "bleu",
+        couleur: BLEU,
+        association: "forte"
+    }, {
+        id: 15,
         mot: "bleu",
         couleur: JAUNE,
         association: "faible"
     }, {
-        id: 26,
+        id: 16,
         mot: "jaune",
         couleur: JAUNE,
         association: "forte"
     }, {
-        id: 27,
+        id: 17,
+        mot: "jaune",
+        couleur: JAUNE,
+        association: "forte"
+    }, {
+        id: 18,
+        mot: "jaune",
+        couleur: JAUNE,
+        association: "forte"
+    }, {
+        id: 19,
+        mot: "jaune",
+        couleur: JAUNE,
+        association: "forte"
+    }, {
+        id: 20,
         mot: "jaune",
         couleur: BLEU,
-        association: "faible"
-    }, {
-        id: 28,
-        mot: "rouge",
-        couleur: ROUGE,
-        association: "forte"
-    }, {
-        id: 29,
-        mot: "vert",
-        couleur: VERT,
-        association: "forte"
-    }, {
-        id: 30,
-        mot: "bleu",
-        couleur: JAUNE,
         association: "faible"
     }
 ];
