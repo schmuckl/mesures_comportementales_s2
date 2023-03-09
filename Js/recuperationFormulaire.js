@@ -1,9 +1,17 @@
 function initSujet() {
+    checkRgpd();
     let age = recuperationAge();
     let genre = recuperationGenre();
-    let daltolien = recuperationDaltonien();
+    let daltonien = recuperationDaltonien();
 
-    return new sujet(age, genre, daltolien)
+    return new sujet(age, genre, daltonien)
+}
+
+function checkRgpd() { // recuperation de la tranche d'age du sujet
+    let params = (new URL(document.location)).searchParams;
+    if (!params.get('validationExp')) {
+        window.location.href = '../html/debutExperience.html';
+    }
 }
 
 function recuperationAge() { // recuperation de la tranche d'age du sujet

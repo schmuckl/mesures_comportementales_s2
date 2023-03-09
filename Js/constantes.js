@@ -19,16 +19,17 @@ const element_mot_a_changer =  document.getElementById("mot-a-changer");
 const boutons_couleurs = document.getElementsByClassName("bouton-couleur");
 const next_bouton = document.getElementById("bouton-next");
 
-
 const mots_couleurs = [
     {
         id: 1,
         mot: "rouge",
-        couleur: BLEU
+        couleur: BLEU,
+        association: "faible"
     }, {
         id: 2,
         mot: "bleu",
-        couleur: JAUNE
+        couleur: BLEU,
+        association: "forte"
     }, {
         id: 3,
         mot: "vert",

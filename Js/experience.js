@@ -12,6 +12,11 @@ function initialisationExperience() {
     elements_manager.desactiverBoutonsCouleurs();
 }
 
+function initRandomWords() {
+    randomized_words = [...mots_couleurs];
+    randomized_words.sort(() => Math.random() - 0.5);
+}
+
 function debutManche() {
     // si c'est le début, on change le texte du bouton demarrer
     if (index_courant === 0) {
@@ -57,11 +62,15 @@ function finDeLaManche() {
 
     // on vérifie si l'experience est terminée
     if (index_courant === randomized_words.length) {
+        finirExperience();
         console.log(resultat_collection);
-        // TODO enver vers la page de remerciement
     }
 }
 
+async function finirExperience() {
+    await sleep(2000);
+    window.location.href = '../html/finExperience.html';
+}
 
 function verifierCouleur(value) {
     if (value !== randomized_words[index_courant].couleur.nom) {
@@ -69,11 +78,6 @@ function verifierCouleur(value) {
     }
 
     finDeLaManche();
-}
-
-function initRandomWords() {
-    randomized_words = [...mots_couleurs];
-    randomized_words.sort(() => Math.random() - 0.5);
 }
 
 // Enregistrer la position du curseur
@@ -88,8 +92,8 @@ function desactiverEnregistrementPositionCurseur() {
 
 function enregistreDeplacementSouris(event) {
     const position = {
-        position_x : event.clientX,
-        position_y : event.clientY
+        position_x: event.clientX,
+        position_y: event.clientY
     };
 
     // ajout de la position courante du curseur au résultat courant
@@ -101,5 +105,9 @@ function startTimer() {
 }
 
 function stopTimer() {
-    return  Date.now() - start_timer;
+    return Date.now() - start_timer;
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
