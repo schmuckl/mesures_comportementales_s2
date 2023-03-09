@@ -3,7 +3,8 @@ table {
 }
 
 body {
-    background-color: lightslategrey;
+    background-color: #000;
+    color: white;
 }
 
 td {
