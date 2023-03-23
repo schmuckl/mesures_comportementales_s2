@@ -11,14 +11,14 @@ function initSujet() {
 function checkRgpd() { // recuperation de la tranche d'age du sujet
     let params = (new URL(document.location)).searchParams;
     if (!params.get('validationExp')) {
-        window.location.href = '../html/debutExperience.html';
+        window.location.href = 'debutExperience.html';
     }
 }
 
 function recuperationAge() { // recuperation de la tranche d'age du sujet
     let params = (new URL(document.location)).searchParams;
     if (!params.get('age')) {
-        window.location.href = '../html/debutExperience.html';
+        window.location.href = 'debutExperience.html';
     }
     return params.get('age');
 }
@@ -26,7 +26,7 @@ function recuperationAge() { // recuperation de la tranche d'age du sujet
 function recuperationDroitier() { // recuperation de la tranche d'age du sujet
     let params = (new URL(document.location)).searchParams;
     if (!params.get('droitier')) {
-        window.location.href = '../html/debutExperience.html';
+        window.location.href = 'debutExperience.html';
     }
     return params.get('droitier');
 }
@@ -34,7 +34,7 @@ function recuperationDroitier() { // recuperation de la tranche d'age du sujet
 function recuperationGenre() { // Récupération du genre de la personne
     let params = (new URL(document.location)).searchParams;
     if (!params.get('genre')) {
-        window.location.href = '../html/debutExperience.html';
+        window.location.href = 'debutExperience.html';
     }
     return params.get('genre');
 }
@@ -42,7 +42,7 @@ function recuperationGenre() { // Récupération du genre de la personne
 function recuperationDaltonien() { // Récupération du genre de la personne
     let params = (new URL(document.location)).searchParams;
     if (!params.get('daltonien') || params.get('daltonien') === "yes") {
-        window.location.href = '../html/debutExperience.html';
+        window.location.href = 'debutExperience.html';
     }
     return params.get('daltonien') === "yes";
 }
