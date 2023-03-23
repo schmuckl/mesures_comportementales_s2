@@ -30,7 +30,8 @@ td {
     justify-content: center;
 }
 
-#warning-device {
+#warning-device,
+#warning-daltonien{
     background-color: #ffeeba;
     color: #856404;
     padding: 10px;

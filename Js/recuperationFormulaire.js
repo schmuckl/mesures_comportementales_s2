@@ -32,7 +32,7 @@ function recuperationGenre() { // Récupération du genre de la personne
 
 function recuperationDaltonien() { // Récupération du genre de la personne
     let params = (new URL(document.location)).searchParams;
-    if (!params.get('daltonien')) {
+    if (!params.get('daltonien') || params.get('daltonien') === "yes") {
         window.location.href = '../html/debutExperience.html';
     }
     return params.get('daltonien') === "yes";

@@ -7,4 +7,8 @@ class resultatCollection {
     addResultat(resultat) {
         this.resultat.push(resultat);
     }
+
+    addListName(bloc) {
+        this.liste = bloc;
+    }
 }
