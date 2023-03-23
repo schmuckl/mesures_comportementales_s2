@@ -126,7 +126,7 @@ function finDeLaManche() {
 async function finirExperience(resultats) {
     savedata(resultats);
     await sleep(2000);
-    window.location.href = '../html/finExperience.html';
+    window.location.href = 'finExperience.html';
 }
 
 function verifierCouleur(value) {
