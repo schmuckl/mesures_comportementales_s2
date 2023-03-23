@@ -5,6 +5,9 @@ class elementsManager {
 
         // on récupere la couleur associée au mot
         element_mot_a_changer.style.color = randomized_words[index_courant].couleur.hexa;
+
+        console.log(randomized_words[index_courant].mot);
+        console.log(randomized_words[index_courant].couleur.hexa);
     }
 
     desactiverBoutonsCouleurs() {
@@ -17,6 +20,11 @@ class elementsManager {
         for (let i = 0; i < boutons_couleurs.length; i++) {
             boutons_couleurs[i].disabled = false;
         }
+    }
+
+    afficherFinEntrainement() {
+        this.desactiverBoutonsCouleurs();
+        console.log('afficherFinEntrainement');
     }
 
     desactiverNextBouton() {
