@@ -10,27 +10,22 @@ library (lmerTest)
 ### * Get the data
 source ("inspect-data.r")
 
-### * Analysis Movement Time (MT)
+### * Descriptive statistics
 
-### ** Boxplot
+### ** Movement Time (MT)
+
+### *** Boxplot
 boxplot (RT ~ congruency * prop_congr, dataset)
 
-### ** Boxplot with Y axis in logarithmic scale
+### *** Boxplot with Y axis in logarithmic scale
 boxplot (RT ~ congruency * prop_congr, dataset, log = "y")
 
-### ** ANOVA
-fm <- lm (RT ~ congruency + prop_congr, dataset)
-fm <- lm (RT ~ congruency + prop_congr + congruency:prop_congr, dataset)
-fm <- lm (RT ~ congruency * prop_congr, dataset)
-fm
-anova (fm)
+### ** Area Under Curve (AUC)
 
-### ** Mixed effects model
-fm.lmer <- lmer (RT ~ congruency * prop_congr + (1 | subject), dataset)
-fm.lmer
-anova (fm.lmer)
-ranova (Fm.lmer)
-ranef (fm.lmer)
+### ** Boxplot
+boxplot (AUC ~ congruency * prop_congr, dataset)
+
+### * Statistical inferences
 
 ### ** Cope with errors
 
@@ -44,27 +39,52 @@ dataset.ok <- dataset [idx, ]
 dataset.ok <- subset (dataset, post_error == 0)
 boxplot (RT ~ congruency * prop_congr, dataset.ok, log = "y")
 
-### *** Analysis with correct trials
-fm.lmer <- lmer (RT ~ congruency * prop_congr + (1 | subject), dataset.ok)
-fm.lmer
-anova (fm.lmer)
+### ** Average results for participants in each condition
+dataset.agg <- aggregate (cbind (RT, AUC) ~ congruency * prop_congr * subject,
+                          dataset.ok,
+                          mean)
 
-### * Analysis Area Under Curve (AUC)
+### *** Inspect data
+str (dataset.agg)
+boxplot (RT ~ congruency * prop_congr, dataset.agg, log = "y")
+boxplot (AUC ~ congruency * prop_congr, dataset.agg)
 
-### ** Boxplot
-boxplot (AUC ~ congruency * prop_congr, dataset.ok)
+### ** ANOVA
+
+### *** Movement time
+fm <- lm (RT ~ congruency + prop_congr, dataset.agg)
+fm <- lm (RT ~ congruency + prop_congr + congruency:prop_congr, dataset.agg)
+fm <- lm (RT ~ congruency * prop_congr, dataset.agg)
+fm
+anova (fm)
+
+### *** Area under curve
+fm <- lm (AUC ~ congruency * prop_congr, dataset.agg)
+anova (fm)
 
 ### ** Mixed effects model
-fm.lmer <- lmer (AUC ~ congruency * prop_congr + (1 | subject), dataset.ok)
+
+### *** Movement time
+fm.lmer <- lmer (RT ~ congruency * prop_congr + (1 | subject),
+                 dataset.agg)
 fm.lmer
 anova (fm.lmer)
+ranova (fm.lmer)
+ranef (fm.lmer)
+
+### *** Area Under Curve (AUC)
+fm.lmer <- lmer (AUC ~ congruency * prop_congr + (1 | subject),
+                 dataset.agg)
+fm.lmer
+anova (fm.lmer)
+ranova (fm.lmer)
+ranef (fm.lmer)
 
 ### * Compute AUC
 
 ### ** Select data for subject #1 and trial #5
 dataset.s1 <- subset (dataset.ok, subject == 1)
-dataset.s1.t5 <- subset (dataset.s1, trial == )
-dataset.s1.t5 <- subset (dataset.ok, subject == 1 & trial == 6)
+dataset.s1.t5 <- subset (dataset.ok, subject == 1 & trial == 5)
 
 ### ** Extract X and Y mouse coordinates
 x <- as.numeric (dataset.s1.t5 [, seq (15, 115)])
@@ -77,34 +97,3 @@ lines (c (x, x[1]), c (y, y[1]))
 source ("area-polygon.r")
 area.polygon(c (x, x[1]), c (y, y[1]))
 dataset.s1.t5$AUC
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
