@@ -9,11 +9,14 @@ let elements_manager = new elementsManager();
 function commencerEntrainement() {
     console.log("Commencer l'entrainement")
     randomized_words = [...mots_couleurs_exemple];
-
-    debutMancheEntrainement();
 }
 
 function debutMancheEntrainement() {
+    if (! entrainement) {
+        debutManche();
+        return;
+    }
+
     // si c'est le début, on change le texte du bouton demarrer
     if (index_courant === 0) {
         next_bouton.innerText = "Suivant";
@@ -35,9 +38,10 @@ function finMancheEntrainement() {
     index_courant++;
 
     if (index_courant === randomized_words.length) {
-        console.log("Fin entrainement");
         next_bouton.innerText = "Commencer";
         index_courant = 0;
+        entrainement = false
+        initialisationExperience();
     }
 }
 

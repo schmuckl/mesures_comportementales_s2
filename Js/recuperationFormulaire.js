@@ -3,8 +3,9 @@ function initSujet() {
     let age = recuperationAge();
     let genre = recuperationGenre();
     let daltonien = recuperationDaltonien();
+    let droitier = recuperationDroitier();
 
-    return new sujet(age, genre, daltonien)
+    return new sujet(age, genre, daltonien, droitier)
 }
 
 function checkRgpd() { // recuperation de la tranche d'age du sujet
@@ -20,6 +21,14 @@ function recuperationAge() { // recuperation de la tranche d'age du sujet
         window.location.href = '../html/debutExperience.html';
     }
     return params.get('age');
+}
+
+function recuperationDroitier() { // recuperation de la tranche d'age du sujet
+    let params = (new URL(document.location)).searchParams;
+    if (!params.get('droitier')) {
+        window.location.href = '../html/debutExperience.html';
+    }
+    return params.get('droitier');
 }
 
 function recuperationGenre() { // Récupération du genre de la personne
