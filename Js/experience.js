@@ -5,6 +5,8 @@ let resultat_courant;
 let start_timer;
 let entrainement = true;
 let elements_manager = new elementsManager();
+const nb_repetition = 6;
+let iterator_repetition = 1;
 
 function commencerEntrainement() {
     console.log("Commencer l'entrainement")
@@ -110,9 +112,14 @@ function finDeLaManche() {
     resultat_collection.addResultat(resultat_courant);
 
     // on vérifie si l'experience est terminée
-    if (index_courant === randomized_words.length) {
+    if (index_courant === randomized_words.length && iterator_repetition >= nb_repetition) {
         finirExperience();
         console.log(resultat_collection);
+    }
+    else if (index_courant === randomized_words.length && iterator_repetition < nb_repetition) {
+        randomized_words.sort(() => Math.random() - 0.5);
+        iterator_repetition++;
+        index_courant = 0;
     }
 }
 
@@ -146,7 +153,8 @@ function desactiverEnregistrementPositionCurseur() {
 function enregistreDeplacementSouris(event) {
     const position = {
         position_x: event.clientX,
-        position_y: event.clientY
+        position_y: event.clientY,
+        timer : Date.now()
     };
 
     // ajout de la position courante du curseur au résultat courant
