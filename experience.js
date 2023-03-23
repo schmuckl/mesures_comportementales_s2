@@ -113,7 +113,7 @@ function finDeLaManche() {
 
     // on vérifie si l'experience est terminée
     if (index_courant === randomized_words.length && iterator_repetition >= nb_repetition) {
-        finirExperience();
+        finirExperience(resultat_collection);
         console.log(resultat_collection);
     }
     else if (index_courant === randomized_words.length && iterator_repetition < nb_repetition) {
@@ -123,9 +123,10 @@ function finDeLaManche() {
     }
 }
 
-async function finirExperience() {
+async function finirExperience(resultats) {
+    savedata(resultats);
     await sleep(2000);
-    // window.location.href = '../html/finExperience.html';
+    window.location.href = '../html/finExperience.html';
 }
 
 function verifierCouleur(value) {
