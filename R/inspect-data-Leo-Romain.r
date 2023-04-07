@@ -1,6 +1,7 @@
-
+### * Lecture des fichiers JSON en R
 library(rjson)
 library(lme4)
+library(pryr)
 
 ### ** Récupération des données sur Internet
 
@@ -11,7 +12,7 @@ page
 
 ### ** Extraction des noms des fichiers
 
-stringLimite <- "2022-11-28-15-31-00"
+stringLimite <- "2023-03-23-08-00-00"
 dateLimite <- as.POSIXct(stringLimite, format="%Y-%m-%d-%H-%M-%S", tz="UTC")
 
 files <- c ()
@@ -25,8 +26,6 @@ for (line in page) {
     }
   }
 }
-
-str (files)
 
 length (files)
 
@@ -44,26 +43,54 @@ for (f in files)
 ### ** Récupération des données au format JSON
 
 ### Initialise une liste vide
-exp.data <- list ()
+dataexp.raw <- list ()
 for (f in files) {
   ## Compose URL
   url <- paste (webdir, f, sep = "")
   ## Extrait timestamp
   timestamp <- strsplit (f, "\\.") [[1]] [1]
   ## Sauvegarde dans la liste sous le champ "timestamp"
-  exp.data [[timestamp]] <- fromJSON (file = url)
+  dataexp.raw [[timestamp]] <- fromJSON (file = url)
   ## Indicateur de progression
   cat (sprintf ("Read file %s\r", f))
 }
+
+
+test <- list()
+for (i in 1:length(dataexp.raw)) {
+  sujet <- as.data.frame (dataexp.raw[[i]]$sujet)
+  liste <- as.data.frame (dataexp.raw[[i]]$liste)
+  
+  test_res <- list()
+  resultat_a_formater <- dataexp.raw[[i]]$resultat
+  for (y in 1:length(resultat_a_formater)) {
+    
+    positions_curseurs <- list()
+    
+    for (element in resultat_a_formater[[y]]$positions_curseurs) {
+      positions_curseurs[[length(positions_curseurs) + 1]] <- element
+    }
+    
+    test_pos_curseur <- list()
+    
+    for (j in 1:length(positions_curseurs)) {
+      test_pos_curseur[[j]] <- as.data.frame (positions_curseurs[[j]])
+    }
+    
+    resultat_a_formater[[y]]$positions_curseurs <- NULL
+    
+    test_res[[y]] <- list(info_gen = as.data.frame (resultat_a_formater[[y]]),
+                                                    curseur = test_pos_curseur)
+  }
+  
+  
+  test[[i]] <- list(info_sujet = sujet, resultats = test_res, liste = liste)
+}
+
+dataset <- as.data.frame (dataexp.raw)
+
 cat ("\n")
 
-length (exp.data)
+length (dataexp.raw)
 
-str (exp.data)
-
-
-x <- sapply (d$resultat[[1]]$positions_curseurs, function(z) z$position_x)
-y <- sapply (d$resultat[[1]]$positions_curseurs, function(z) z$position_y)
-xn <- (x - x[1]) / (x[length(x)] - x[1])
-yn <- (y - y[1]) / (y[length(y)] - y[1])
-plot (xn, yn)
+str (dataexp.raw)
